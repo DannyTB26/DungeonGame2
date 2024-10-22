@@ -8,4 +8,8 @@ public class Inventory {
         items = new Item[5];
         weapons = new Weapon[3];
     }
+
+    public void printInventory() {
+        System.out.println("WIP");
+    }
 }

@@ -1,17 +1,22 @@
+import java.util.Scanner;
+
 public class Player {
     private String name;
+    private String title;
     private Inventory inventory;
-    private double health;
+    private double health = 100;
+    private Scanner input = new Scanner(System.in);
 
-    public Player(String name, Inventory inventory, double health) {
+    public Player(String name, String title) {
         this.name = name;
-        this.inventory = inventory;
-        this.health = health;
+        this.title = title;
     }
 
     public String getName() {
         return name;
     }
+
+    public String getTitle() { return title; }
 
     public Inventory getInventory() {
         return inventory;
@@ -25,6 +30,8 @@ public class Player {
         this.name = name;
     }
 
+    public void setTitle(String title) { this.title = title; }
+
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
@@ -36,4 +43,18 @@ public class Player {
     public void useItem(String item) {
         System.out.println("You used " + item);
     }
+
+    public void playerCheck() {
+        System.out.println("Would you like to check your stats (Y/N)?");
+        String response = input.nextLine();
+        if (response.toUpperCase().equals("Y")) {
+            System.out.println(name + " of the " + title);
+            System.out.println("Health: " + health);
+            inventory.printInventory();
+        }
+
+
+    }
+
+
 }
