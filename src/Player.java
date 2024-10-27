@@ -5,6 +5,7 @@ public class Player {
     private String title;
     private Inventory inventory;
     private double health = 100;
+    private int gold;
     private Scanner input = new Scanner(System.in);
 
     public Player(String name, String title) {
@@ -40,6 +41,8 @@ public class Player {
         this.health = health;
     }
 
+    public void addGold(int gold) { this.gold += gold; }
+
     public void useItem(String item) {
         System.out.println("You used " + item);
     }
@@ -48,12 +51,30 @@ public class Player {
         System.out.println("Would you like to check your stats (Y/N)?");
         String response = input.nextLine();
         if (response.toUpperCase().equals("Y")) {
-            System.out.println(name + " of the " + title);
-            System.out.println("Health: " + health);
-            inventory.printInventory();
+            getStats();
+        } else if (response.toUpperCase().equals("N")) {
+            System.out.println("Very well\n");
+        } else {
+            System.out.println("Sorry, I didn't understand that\n");
+            playerCheck();
         }
+    }
 
+    public void getStats() {
+        System.out.println(name + " of the " + title);
+        System.out.println("Health: " + health);
+        inventory.printInventory();
+        System.out.println("Gold: " + gold);
+        System.out.println();
+    }
 
+    public void playerTurn(Player player, Enemy enemy) {
+        System.out.println("WIP");
+    }
+
+    public void death() {
+        System.out.println("You died! \nYour Stats: ");
+        getStats();
     }
 
 

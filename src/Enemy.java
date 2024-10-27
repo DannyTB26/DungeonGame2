@@ -57,6 +57,10 @@ public class Enemy {
         }
     }
 
+    public void enemyTurn(Player player, Enemy enemy) {
+        System.out.println("WIP");
+    }
+
     public void death() {
         System.out.println(getName() + " perished!");
     }
