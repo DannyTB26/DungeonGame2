@@ -4,7 +4,10 @@ public class Player {
     private String name;
     private String title;
     private Inventory inventory;
+    private Weapon equippedWeapon = new Weapon("Fists", 5);
+    private Armour equippedArmour = new Armour("Clothes", 2);
     private double health = 100;
+    private double defence = 0;
     private int gold;
     private Scanner input = new Scanner(System.in);
 
@@ -27,6 +30,8 @@ public class Player {
         return health;
     }
 
+    public double getDefence() { return defence; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -41,11 +46,9 @@ public class Player {
         this.health = health;
     }
 
-    public void addGold(int gold) { this.gold += gold; }
+    public void setDefence(double defence) { this.defence = defence; }
 
-    public void useItem(String item) {
-        System.out.println("You used " + item);
-    }
+    public void addGold(int gold) { this.gold += gold; }
 
     public void playerCheck() {
         System.out.println("Would you like to check your stats (Y/N)?");
@@ -69,13 +72,30 @@ public class Player {
     }
 
     public void playerTurn(Player player, Enemy enemy) {
-        System.out.println("WIP");
+        int choice = 0;
+        System.out.println("What would you like to do?\n1) Attack \n2) Defend \n3) Use Item \n4) Attempt to Flee");
+        choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                enemy.setHealth(enemy.getHealth() - equippedWeapon.getDamage());
+            case 2:
+                this.defence = equippedArmour.getDefence();
+            case 3:
+                if (inventory.getItems() != 0) {
+                    System.out.println("What item would you like to use?");
+                    inventory.useItem(player);
+                }
+        }
     }
 
-    public void death() {
-        System.out.println("You died! \nYour Stats: ");
-        getStats();
-    }
+
+}
+
+public void death() {
+    System.out.println("You died! \nYour Stats: ");
+    getStats();
+}
 
 
 }
